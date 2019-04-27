@@ -2,46 +2,27 @@
     <ul class="nav nav-pills flex-column">
       	<li class="nav-item">
         	<span class="nav-link disabled">Barang</span>
-      	</li>
-		<li class="nav-item">
-			<a class="nav-link <?=($this->uri->segment(2) == 'lihat_barang' || $this->uri->segment(2) == FALSE) ? 'active' : ''; ?>" href="<?=base_url(strtolower($this->session->userdata('jabatan'))) ?>">
-				<?=($this->session->userdata('jabatan') == 'ADMIN') ? "Kelola" : "Data" ?> Barang 
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="">
+				Daftar Harga
 			</a>
 		</li>
-	</ul>  
-	<?php if($this->session->userdata('jabatan') == 'ADMIN') { ?>
+		<li class="nav-item">
+			<a class="nav-link" href="">
+				Pemesanan 
+			</a>
+		</li>
+	</ul>
 	<ul class="nav nav-pills flex-column">
 		<li class="nav-item">
 			<span class="nav-link disabled">Supplier</span>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link <?=($this->uri->segment(2) == 'lihat_supplier') ? 'active' : ''; ?>" href="<?=base_url(strtolower($this->session->userdata('jabatan')) . '/lihat_supplier'); ?>">
+			<a class="nav-link" href="">
 				Kelola Supplier  
 			</a>
 		</li>
-	</ul>  
-	<?php } ?>
-	<ul class="nav nav-pills flex-column">
-		<li class="nav-item">
-			<span class="nav-link disabled">Karyawan</span>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link <?=($this->uri->segment(2) == 'lihat_karyawan') ? 'active' : ''; ?>" href="<?=base_url(strtolower($this->session->userdata('jabatan')) . '/lihat_karyawan'); ?>">
-				<?=($this->session->userdata('jabatan') == 'ADMIN') ? "Kelola" : "Data" ?> Karyawan 
-			</a>
-		</li>
-	</ul>  
-	<?php if ($this->session->userdata('jabatan') == 'KASIR') { ?>
-	<ul class="nav nav-pills flex-column">
-		<li class="nav-item">
-			<span class="nav-link disabled">Penjualan</span>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link <?=($this->uri->segment(2) == 'penjualan') ? 'active' : ''; ?>" href="<?=base_url(strtolower($this->session->userdata('jabatan')) . '/penjualan'); ?>">Transaksi Penjualan </a>
-		</li>
 	</ul>
-	<?php } ?>
-
-	
 
 </nav>

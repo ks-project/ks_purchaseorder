@@ -20,10 +20,19 @@
           <a class="nav-link" href="#">Help</a>
         </li>
       </ul> -->
+      <?php if (!$this->session->userdata('id_karyawan')) { ?>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <span class="nav-link">
+            Purchase Order
+          </span>
+        </li>
+      </ul>
+      <?php } else { ?>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
           <a href="<?=base_url('profil/edit_profil'); ?>" class="nav-link">
-            <?php echo "ILHAM IBNU PURNOMO" ?>
+            <?php echo $this->session->userdata('nama') ?>
             <span class="badge badge-primary"> ADMEN </span>
           </a>
         </li>
@@ -31,5 +40,6 @@
           <a class="nav-link" href="<?=base_url('logout')?>">Logout</a>
         </li>
       </ul>
+      <?php } ?>
     </div>
   </nav>
