@@ -28,10 +28,6 @@
                 </nav>
                 <div class="d-flex justify-content-between align-items-baseline">
                     <h1>Daftar Harga</h1>
-                    <div class="">
-                        <a href="<?=base_url('admin/tambah_barang');?>" class="btn btn-primary">Tambah Barang</a>
-                        <a href="<?=base_url('admin/cetak_laporan_barang');?>" class="btn btn-secondary">Cetak Laporan</a>
-                    </div>
                 </div>
                 
                 
@@ -114,12 +110,11 @@
 
                 <!--/ NOTIFICATION -->
 
-
-            <?php  { ?>
+            <?php if (!$barangs) { ?>}
                 <div class="alert alert-warning" role="alert">
                     Tidak ada barang!
                 </div>
-                     
+            <?php } else { ?>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
                         <thead class="thead-dark">
@@ -130,11 +125,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php foreach ($barangs as $barang) { ?>
                             <tr>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
+                                <td><?=$barang['id']; ?></td>
+                                <td><?=$barang['nama_barang']; ?></td>
+                                <td><?=$barang['harga']; ?></td>
                             </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

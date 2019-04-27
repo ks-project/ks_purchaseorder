@@ -24,16 +24,17 @@
             <main class="col-sm-9 ml-sm-auto col-md-10 pt-3 pl-4" role="main">
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb pl-0">
-                        <li class="breadcrumb-item active" aria-curent="page">Kelola Barang</li>
+                        <li class="breadcrumb-item active" aria-curent="page">Dashboard</li>
                     </ol>
                 </nav>
-                <div class="d-flex justify-content-between align-items-baseline">
-                    <h1>Kelola Barang</h1>
-                    <div class="">
-                        <a href="<?=base_url('admin/tambah_barang');?>" class="btn btn-primary">Tambah Barang</a>
-                        <a href="<?=base_url('admin/cetak_laporan_barang');?>" class="btn btn-secondary">Cetak Laporan</a>
-                    </div>
+                <div class="d-flex align-items-baseline">
+                    <h1>Selamat Datang!</h1>
                 </div>
+                <div>
+                    <h2> di Kartika Sari - Purchase Order</h2>
+                </div>
+
+                <p>Kue-kue Kartika Sari® yang menjadi oleh-oleh favorit Anda adalah resep turun-menurun keluarga Ibu Ratnawati yang didapatkan sejak jaman kolonial Belanda.</p>
                 <!-- NOTIFICATION -->
                 <!-- NOTIFICATION::hapus_barang -->
                 <?php if ($this->session->flashdata('hapus_id')) { 

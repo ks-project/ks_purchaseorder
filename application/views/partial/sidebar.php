@@ -9,18 +9,8 @@
 			</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="">
+			<a class="nav-link" href="<?=base_url()?>dashboard/pemesanan">
 				Pemesanan 
-			</a>
-		</li>
-	</ul>
-	<ul class="nav nav-pills flex-column">
-		<li class="nav-item">
-			<span class="nav-link disabled">Supplier</span>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="">
-				Kelola Supplier  
 			</a>
 		</li>
 	</ul>

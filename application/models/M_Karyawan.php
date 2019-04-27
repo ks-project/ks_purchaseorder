@@ -1,6 +1,6 @@
 <?php
 
-class M_Karyawan extends CI_Model 
+class M_karyawan extends CI_Model 
 {
 	private $table_name = 'karyawan';
 	public function get_karyawans($num = 50) {

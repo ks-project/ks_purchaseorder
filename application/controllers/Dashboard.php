@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('m_karyawan', '', TRUE);
+		$this->load->model('m_harga', '', TRUE);
 		if (!$this->session->userdata('id_karyawan')) {
 			redirect('login', 'location');
 		}
@@ -16,11 +17,12 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard');
 	}
 
-    public function pembelian() {
-        $this->load->view('pembelian');
+    public function pemesanan() {
+        $this->load->view('pemesanan');
     }
     
     public function daftar_harga() {
-        $this->load->view('daftar_harga');
+		$data['barangs'] = $this->m_harga->get_barangs();
+        $this->load->view('daftar_harga', $data);
     }
 }
