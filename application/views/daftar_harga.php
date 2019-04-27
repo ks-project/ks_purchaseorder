@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ACIM Store :: Data Barang</title>
+	<title>KartikaSari :: Daftar Harga</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.min.css">
     <!-- Custom CSS -->
@@ -27,7 +27,7 @@
                     </ol>
                 </nav>
                 <div class="d-flex justify-content-between align-items-baseline">
-                    <h1>Data Barang</h1>
+                    <h1>Daftar Harga</h1>
                     <div class="">
                         <a href="<?=base_url('admin/tambah_barang');?>" class="btn btn-primary">Tambah Barang</a>
                         <a href="<?=base_url('admin/cetak_laporan_barang');?>" class="btn btn-secondary">Cetak Laporan</a>
@@ -126,33 +126,15 @@
                             <tr>
                                 <th># ID Barang</th>
                                 <th>Nama Barang</th>
-                                <th>Stok</th>
                                 <th>Harga</th>
-                                <th>Tanggal Kadaluarsa</th>
-                                <th>Supplier</th>
-		                        <?php if ($this->session->userdata('jabatan') == 'ADMIN') { ?>
-                                <th>*</th>
-                                <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php  { ?>
                             <tr>
                                 <td>#</td>
                                 <td>#</td>
                                 <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
-		                        <?php  { ?>
-                                <td>
-                                    <a href="#" role="button" class="popover-test text-danger" data-toggle="modal" data-target="#modal_konfirmasi_hapus" data-id="#" data-nama="#">Hapus</a>
-                                    <a href="<?=base_url('admin/edit_barang/' . '#'); ?>" class="text-warning">Edit</a>
-                                    <a href="#" role="button" data-toggle="modal" data-target="#modal_tambah_stok" data-id="#" data-nama="#">Tambah Stok</a>
-                                </td>
-                                <?php } ?>
                             </tr>
-                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

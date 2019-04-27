@@ -19,4 +19,8 @@ class Dashboard extends CI_Controller {
     public function pembelian() {
         $this->load->view('pembelian');
     }
+    
+    public function daftar_harga() {
+        $this->load->view('daftar_harga');
+    }
 }

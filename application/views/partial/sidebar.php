@@ -4,7 +4,7 @@
         	<span class="nav-link disabled">Barang</span>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link" href="">
+			<a class="nav-link" href="<?=base_url()?>dashboard/daftar_harga">
 				Daftar Harga
 			</a>
 		</li>
