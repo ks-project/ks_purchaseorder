@@ -16,6 +16,19 @@
     <div class="container-fluid">
         <div class="row">
             <!-- SIDEBAR -->
+            <nav class="col-sm-3 col-md-2 d-none d-sm-block sidebar">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <span class="nav-link disabled">Barang</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Daftar Harga
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
             <!--/ SIDEBAR -->
 
             <main class="col-sm-9 ml-sm-auto col-md-10 pt-3 pl-4" role="main">                
@@ -28,45 +41,12 @@
                 <div class="d-flex justify-content-between align-items-baseline">
                     <h1>Daftar Harga</h1>
                     <div class="">
-                        <a href="<?=base_url('admin/tambah_barang');?>" class="btn btn-primary">Tambah Barang</a>
-                        <a href="<?=base_url('admin/cetak_laporan_barang');?>" class="btn btn-secondary">Cetak Laporan</a>
+                        <a href="<?=base_url('admin/cetak_laporan_barang');?>" class="btn btn-secondary">Cetak Harga</a>
                     </div>
                 </div>
                 
                 
                 <!-- NOTIFICATION -->
-                <!-- NOTIFICATION::hapus_barang -->
-                <?php if ($this->session->flashdata('hapus_id')) { 
-                        if ($this->session->flashdata('hapus_berhasil')) { 
-                ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Berhasil</strong> menghapus data barang <strong>#<?=$this->session->flashdata('hapus_id');?>!</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php } else { ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Gagal</strong> menghapus data barang <strong>#<?=$this->session->flashdata('hapus_id');?>!</strong> Terjadi kesalahan
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php 
-                        }
-                    }
-                ?>
-
-                <!-- NOTIFICATION::tambah_barang -->
-                <?php if ($this->session->flashdata('tambah_id')) { ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Berhasil</strong> menambah data barang <strong>#<?=$this->session->flashdata('tambah_id');?>!</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php } ?>
-
                 <!-- NOTIFICATION::edit_barang -->
                 <?php if ($this->session->flashdata('edit_id')) { 
                         if (!$this->session->flashdata('edit_gagal')) { 
@@ -126,6 +106,7 @@
                                 <th># ID Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Harga</th>
+                                <th>*</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -133,6 +114,11 @@
                                 <td>#</td>
                                 <td>#</td>
                                 <td>#</td>
+                                <td>
+                                    <a href="#" role="button" class="popover-test text-danger" data-toggle="modal" data-target="#modal_konfirmasi_hapus" data-id="" data-nama="">Hapus</a>
+                                    <a href="<?=base_url('admin/edit_barang/'); ?>" class="text-warning">Edit</a>
+                                    <a href="#" role="button" data-toggle="modal" data-target="#modal_tambah_stok" data-id="" data-nama="">Tambah Stok</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

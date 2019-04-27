@@ -46,7 +46,7 @@
 							<input class="btn btn-primary btn-block" type="submit" name="login" value="Login">
 						</form>
 							<div class="text-center">
-								<a class="d-block small mt-3" href="register.php">Register</a>
+								<a class="d-block small mt-3" href="<?=base_url()?>supplier">Supplier</a>
 							</div>
 					</div>
 				</div>
