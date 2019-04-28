@@ -23,7 +23,7 @@
                 
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb pl-0">
-                        <li class="breadcrumb-item active" aria-curent="page">Kelola Barang</li>
+                        <li class="breadcrumb-item active" aria-curent="page">Barang</li>
                     </ol>
                 </nav>
                 <div class="d-flex justify-content-between align-items-baseline">

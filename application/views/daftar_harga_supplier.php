@@ -22,9 +22,7 @@
                         <span class="nav-link disabled">Barang</span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Daftar Harga
-                        </a>
+                    <a class="nav-link <?=($this->uri->segment(2) == '') ? 'active' : ''; ?>" href="<?=base_url('supplier'); ?>">Daftar Harga</a>
                     </li>
                 </ul>
 

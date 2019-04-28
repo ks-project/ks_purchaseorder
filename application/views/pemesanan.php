@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ACIM Store :: Data Barang</title>
+	<title>KartikaSari :: Pemesanan</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.min.css">
     <!-- Custom CSS -->
