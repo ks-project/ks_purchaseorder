@@ -20,7 +20,7 @@
           <a class="nav-link" href="#">Help</a>
         </li>
       </ul> -->
-      <?php if (!$this->session->userdata('id_karyawan')) { ?>
+      <?php if (!$this->session->userdata('iduser')) { ?>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
           <span class="nav-link">
@@ -31,7 +31,7 @@
       <?php } else { ?>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a href="<?=base_url('profil/edit_profil'); ?>" class="nav-link">
+          <a href="#" class="nav-link">
             <?php echo $this->session->userdata('nama') ?>
             <span class="badge badge-primary"> ADMEN </span>
           </a>

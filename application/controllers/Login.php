@@ -27,12 +27,20 @@ class Login extends CI_Controller {
 			if (!$data) {
 				$this->session->set_flashdata('login-gagal', "GAGAL");
 				redirect('login/index', 'location');
-			} else {
-					$this->session->set_userdata('id_karyawan', $data[0]['id_karyawan']);
-					$this->session->set_userdata('jabatan', $data[0]['jabatan']);
-					$this->session->set_userdata('nama', $data[0]['nama']);
+			} elseif ($data[0]['role'] == '1') {
+				$this->session->set_userdata('iduser', $data[0]['iduser']);
+				$this->session->set_userdata('username', $data[0]['username']);
+				$this->session->set_userdata('nama', $data[0]['nama']);
+				$this->session->set_userdata('role', $data[0]['role']);
 
-					redirect('dashboard', 'location');
+				redirect('dashboard', 'location');
+			} elseif ($data[0]['role'] == '2') {
+				$this->session->set_userdata('iduser', $data[0]['iduser']);
+				$this->session->set_userdata('username', $data[0]['username']);
+				$this->session->set_userdata('nama', $data[0]['nama']);
+				$this->session->set_userdata('role', $data[0]['role']);
+
+				redirect('supplier', 'location');
 			}
 		}
 	}

@@ -7,6 +7,9 @@ class Supplier extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('m_harga', '', TRUE);
+		if (!$this->session->userdata('iduser')) {
+			redirect('login', 'location');
+		}
 	}
 
 	public function index() {

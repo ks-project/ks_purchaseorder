@@ -39,7 +39,7 @@
                 <div class="d-flex justify-content-between align-items-baseline">
                     <h1>Daftar Harga</h1>
                     <div class="">
-                        <a href="<?=base_url('admin/cetak_laporan_barang');?>" class="btn btn-secondary">Cetak Harga</a>
+                        <!-- <a href="<?=base_url('admin/cetak_laporan_barang');?>" class="btn btn-secondary">Cetak Harga</a> -->
                     </div>
                 </div>
                 
@@ -102,7 +102,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th># ID Barang</th>
-                                <th>Nama Barang</th>
+                                <th>Sisa Stock</th>
                                 <th>Harga</th>
                                 <th>*</th>
                             </tr>
@@ -110,11 +110,11 @@
                         <tbody>
                         <?php foreach ($barangs as $barang) { ?>
                             <tr>
-                                <td><?=$barang['id']; ?></td>
-                                <td><?=$barang['nama_barang']; ?></td>
+                                <td><?=$barang['idbahanbaku']; ?></td>
+                                <td><?=$barang['qty']; ?></td>
                                 <td><?=$barang['harga']; ?></td>
                                 <td>
-                                    <a href="#" role="button" data-toggle="modal" data-target="#modal_update_harga" data-id="<?=$barang['id']; ?>" data-nama="<?=$barang['nama_barang']; ?>">Update Harga</a>
+                                    <a href="#" role="button" data-toggle="modal" data-target="#modal_update_harga" data-id="<?=$barang['idbahanbaku']; ?>" data-nama="<?=$barang['idbahanbaku']; ?>">Update Harga</a>
                                 </td>
                             </tr>
                         <?php } ?>

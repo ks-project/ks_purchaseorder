@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 		$this->load->model('m_karyawan', '', TRUE);
 		$this->load->model('m_harga', '', TRUE);
-		if (!$this->session->userdata('id_karyawan')) {
+		if (!$this->session->userdata('iduser')) {
 			redirect('login', 'location');
 		}
 	}

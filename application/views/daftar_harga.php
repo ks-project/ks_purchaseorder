@@ -120,15 +120,15 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th># ID Barang</th>
-                                <th>Nama Barang</th>
+                                <th>Sisa Stock</th>
                                 <th>Harga</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($barangs as $barang) { ?>
                             <tr>
-                                <td><?=$barang['id']; ?></td>
-                                <td><?=$barang['nama_barang']; ?></td>
+                                <td><?=$barang['idbahanbaku']; ?></td>
+                                <td><?=$barang['qty']; ?></td>
                                 <td><?=$barang['harga']; ?></td>
                             </tr>
                         <?php } ?>

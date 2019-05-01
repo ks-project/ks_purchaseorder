@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'ks_purchaseorder',
+	'hostname' => '103.28.148.202',
+	'username' => 'sidelear_sisfo_11',
+	'password' => 'sidelear_sisfo_11',
+	'database' => 'sidelear_sisfo_11',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
