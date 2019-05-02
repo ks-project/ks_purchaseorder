@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>KartikaSari :: Pemesanan</title>
+	<title>KartikaSari :: Daftar Pesanan</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.min.css">
     <!-- Custom CSS -->
