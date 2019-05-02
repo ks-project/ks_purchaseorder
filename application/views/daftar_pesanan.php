@@ -26,11 +26,11 @@
                 <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb pl-0">
                         <li class="breadcrumb-item"><a href="<?=base_url('dashboard')?>">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Pemesanan</li>
+                        <li class="breadcrumb-item active" aria-current="page">Daftar Pesanan</li>
                     </ol>
                 </nav>
                 <div class="d-flex justify-content-between align-items-baseline">
-                    <h1>Pemesanan</h1>
+                    <h1>Daftar Pesanan</h1>
                 </div>
 
                 <!-- NOTIFICATION -->
@@ -96,28 +96,7 @@
         </div>
     </div>
 
-    <!-- MODAL:: submit proposal -->
-    <div class="modal fade" id="modal_submit">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Submit Proposal #<span class="detail font-bold"></span></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <div class="modal-body">
-                <form class="form-inline" id="form_submit" method="POST">
-                    <label class="mr-sm-2">Submit Pemesanan?</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="status" id="status" required value="2" hidden>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary modal-action">Simpan</button>
-            </div>
-        </div>
-    </div>
+    
     <!-- Bootstrap JS -->
 	<script type="text/javascript" src="<?=base_url()?>assets/js/popper.1.11.0.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>assets/js/jquery-3.2.1.min.js"></script>
