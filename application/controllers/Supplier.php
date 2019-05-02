@@ -9,6 +9,8 @@ class Supplier extends CI_Controller {
 		$this->load->model('m_harga', '', TRUE);
 		if (!$this->session->userdata('iduser')) {
 			redirect('login', 'location');
+		} elseif ($this->session->userdata('role')!='2') {
+			redirect('dashboard', 'location');
 		}
 	}
 

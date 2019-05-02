@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?=base_url()?>assets/css/main.css">
+    <!-- Data Tables -->
+    <link href="<?=base_url()?>assets/css/datatables.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -18,200 +20,133 @@
             <!-- SIDEBAR -->
             <?php $this->load->view('partial/sidebar.php'); ?>
             <!--/ SIDEBAR -->
-            <main class="col-sm-9 ml-sm-auto col-md-10 pt-3 pl-4" role="main">
+
+            <main class="col-sm-9 ml-sm-auto col-md-10 pt-3 pl-4" role="main">                
+                
                 <nav aria-label="breadcrumb" role="navigation">
-                    <ol class="breadcrumb pl-0">
-                        <li class="breadcrumb-item"><a href="#">Pemesanan</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Transaksi Pemesanan Barang</li>
+                <ol class="breadcrumb pl-0">
+                        <li class="breadcrumb-item"><a href="<?=base_url('dashboard')?>">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Pemesanan</li>
                     </ol>
                 </nav>
+                <div class="d-flex justify-content-between align-items-baseline">
+                    <h1>Pemesanan</h1>
+                </div>
 
-                <h2 class="mb-4">Pemesanan Barang</h2>
-                <?php if ($this->session->flashdata('simpan_error')) { ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Gagal menyimpan penjualan!</strong> Terjadi kesalahan
+                <!-- NOTIFICATION -->
+                <!-- NOTIFICATION::edit_barang -->
+                <?php if ($this->session->flashdata('submit_id')) { 
+                        if (!$this->session->flashdata('submit_gagal')) { 
+                ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Berhasil</strong> melakukan pemesanan bahan baku <strong>#<?=$this->session->flashdata('submit_id');?>!</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <?php } ?>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card bg-light" id="keranjang">
-                            <div class="card-header d-flex justify-content-between">
-                                <form class="form-inline pr-3" id="form_tambah" method="POST" action="<?=base_url('kasir/keranjang_tambah/');?>">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control form-control-lg" name="id_barang" id="id_barang" placeholder="Masukkan ID Barang" aria-label="Masukkan ID Barang" required>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-success btn-lg" type="submit">Tambahkan</button>
-                                        </span>
-                                    </div>
-                                </form>
-                                
-                                <a href="<?=base_url('kasir/keranjang_hapus_semua')?>" id="hapus_semua" class="btn btn-danger btn-lg">Hapus Semua</a>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered" id="keranjang_tabel">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th># ID Barang</th>
-                                                <th>Nama Barang</th>
-                                                <th>Qty</th>
-                                                <th>*</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php 
-                                        $harga_total = 0; 
-                                        if ($keranjang = $this->session->userdata('keranjang')) {
-                                            foreach ($keranjang as $item) {
-                                                $harga_total += $item['total'];
-                                        ?>
-                                            <tr>
-                                                <td><?=$item['id_barang'];?></td>
-                                                <td><?=$item['nama_barang'];?></td>
-                                                <td>
-                                                    <form class="form-inline form_jumlah" data-id="<?=$item['id_barang'];?>" action="<?=base_url('kasir/keranjang_update_jumlah/'.$item['id_barang']);?>">
-                                                        <input type="number" min="1" class="form-control w-100" name="jumlah" value="<?=$item['jumlah'];?>">
-                                                    </form>
-                                                </td>
-                                                <td>
-                                                    <a href="keranjang_hapus/<?=$item['id_barang'];?>" data-id="<?=$item['id_barang'];?>" class="btn btn_hapus_item" onclick="hapus_item(event, <?=$item['id_barang'];?>)">Hapus</a>
-                                                </td>
-                                            </tr>
-                                        <?php 
-                                            } 
-                                        }
-                                        ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <?php } else { ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Gagal</strong> memesan bahan baku <strong>#<?=$this->session->flashdata('submit_id');?>!</strong> Terjadi kesalahan
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <?php 
+                        }
+                    }
+                ?>
+                <!--/ NOTIFICATION -->
+            <?php if (!$proposal) { ?>
+                <div class="alert alert-warning" role="alert">
+                    Tidak ada barang!
+                </div>
+            <?php } else { ?>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th># ID Proposal</th>
+                                <th>Judul</th>
+                                <th>Status</th>
+                                <th>ID Bukti List</th>
+                                <th>Deadline</th>
+                                <th>Created</th>
+                                <th>ID Supplier</th>
+                                <th>*</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($proposal as $prop) { ?>
+                        <?php if ($prop['status'] == '1'){ ?>
+                            <tr>
+                                <td><?=$prop['idproposal']; ?></td>
+                                <td><?=$prop['judul']; ?></td>
+                                <td><?=$prop['status']; ?></td>
+                                <td><?=$prop['idbuktilist']; ?></td>
+                                <td><?=$prop['deadline']; ?></td>
+                                <td><?=$prop['created']; ?></td>
+                                <td><?=$prop['idsupplier']; ?></td>
+                                <td class="text-center">
+                                <a href="#" role="button" data-toggle="modal" data-target="#modal_submit" data-id="<?=$prop['idproposal']; ?>" data-nama="<?=$prop['judul']; ?>">Submit</a>
+                            </tr>
+                        <?php } ?>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php } ?>
             </main>
+        </div>
+    </div>
+
+    <!-- MODAL:: submit proposal -->
+    <div class="modal fade" id="modal_submit">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Submit Proposal #<span class="detail font-bold"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <form class="form-inline" id="form_submit" method="POST">
+                    <label class="mr-sm-2">Submit Pemesanan?</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="status" id="status" required value="2" hidden>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-primary modal-action">Simpan</button>
+            </div>
         </div>
     </div>
     <!-- Bootstrap JS -->
 	<script type="text/javascript" src="<?=base_url()?>assets/js/popper.1.11.0.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>assets/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
+    <!-- Data Table -->
+    <script src="<?=base_url()?>assets/js/datatables.min.js"></script>
+
     <script type="text/javascript">
-        function update_keranjang(res) {
-            var keranjang = "";
-            var harga_total = 0;
-            res.map(function(item) {
-                keranjang += `<tr>` +
-                                `<td>${item.id_barang}</td>` +
-                                `<td>${item.nama_barang}</td>` +
-                                `<td>${item.stok_temp}</td>` +
-                                `<td>Rp ${item.harga_barang},-</td>` +
-                                `<td>` +
-                                    `<form class="form-inline form_jumlah" data-id="${item.id_barang}" action="keranjang_update_jumlah/${item.jumlah}">` +
-                                        `<input type="number" min="1" class="form-control w-100" name="jumlah" value="${item.jumlah}">` +
-                                    `</form>` +
-                                `</td>` +
-                                `<td>Rp ${item.total},-</td>` +
-                                `<td><a href="keranjang_hapus/${item.id_barang}" data-id="${item.id_barang}" class="btn btn_hapus_item" onclick="hapus_item(event, ${item.id_barang}).bind(this)">Hapus</td>` +
-                                `</tr>`;
-                harga_total += item.total;
-            })
-            $('#keranjang #keranjang_tabel tbody').html(keranjang);
-            $('#keranjang_detail #harga_total').attr('value', `Rp ${harga_total},-`);
-            $('#keranjang_detail span#kembalian').html(`Rp 0,-`);
-            $('#keranjang_detail #jumlah_bayar').attr('value', '');
-            if (harga_total > 0) {
-                $('#keranjang_detail #jumlah_bayar').removeAttr('disabled');
-            } else {
-                $('#keranjang_detail #jumlah_bayar').attr('disabled', true);
-            }
-        }
-
-        function hapus_item(e, id) {
-            e.preventDefault();
-            $.ajax({
-                url: `keranjang_hapus/${id}`,
-                dataType: "json",
-                success: function(res) {
-                    if (res.error) {
-                        $('#keranjang .card-body').prepend(`<div class="alert alert-danger alert-dismissible" id="alert_error" role="alert"><strong>Terjadi kesalahan!</strong> ${res.error}.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
-                    } else {
-                        update_keranjang(res);
-                    }
-                }
-            })
-        }
-
-        $(document).ready(function() {
-            $('#keranjang #form_tambah').submit(function(e) {
-                console.log('submiterd');
-                e.preventDefault();
-                $('.alert-danger').alert('close');
-                $.ajax({
-                    type: 'POST',
-                    url: 'keranjang_tambah',
-                    data: $(this).serialize(),
-                    dataType: "json",
-                    success: function(res) {
-                        if (res.error) {
-                            $('#keranjang .card-body').prepend(`<div class="alert alert-danger alert-dismissible" id="alert_error" role="alert"><strong>Terjadi kesalahan!</strong> ${res.error}.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
-                        } else {
-                            update_keranjang(res);
-                        }
-                    }
-                });
-                $(this).find('#id_barang').val('');
-            });          
-            
-            $('#keranjang_tabel tbody').on('change', '.form_jumlah', function() {
-                var form = $(this);
-                var id = form.data('id');
-                $('.alert-danger').alert('close');
-                $.ajax({
-                    url: `keranjang_update_jumlah/${id}`,
-                    dataType: "json",
-                    data: $(this).serialize(),
-                    success: function(res) {
-                        if (res.error) {
-                            $('#keranjang .card-body').prepend(`<div class="alert alert-danger alert-dismissible" id="alert_error" role="alert"><strong>Terjadi kesalahan!</strong> ${res.error}.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
-                            form.children('.form-control').val(form.children('.form-control').attr('value'));
-                        } else {
-                            update_keranjang(res);
-                        }
-                    }
-                })
-            });
-            $('#keranjang_tabel tbody').on('submit', '.form_jumlah', function(e) {
-                e.preventDefault();
-            });            
-            
-            $('#keranjang_detail #jumlah_bayar').on('keyup', function() {
-                var jumlah_bayar = $(this).val();
-                var harga_total = $('#keranjang_detail #harga_total').val().slice(3, -2);
-                var kembalian = jumlah_bayar - harga_total;
-                if (kembalian >= 0) {
-                    $('#keranjang_detail #kembalian').html(`Rp ${kembalian},-`);
-                    $('#keranjang_detail #btn_selesai').removeClass('disabled');
-                } else {
-                    $('#keranjang_detail #kembalian').html(`Rp 0,-`);
-                }
-            });
-            $('#keranjang_detail form').on('submit', function(e) {
-                var harga_total = parseInt($(this).find('#harga_total').attr('value').slice(3, -2));
-                var jumlah_bayar = parseInt($(this).find('#jumlah_bayar').val());
-                // console.log('harga total ' + harga_total);
-                // console.log('jumlah bayar ' + jumlah_bayar);
-                // console.log(harga_total > jumlah_bayar);
-                if (harga_total > jumlah_bayar) {
-                    e.preventDefault();
-                } else {
-                    console.log('OKE');
-                }
-            });
-        })
+    $(document).ready( function () {
+        $('#table').DataTable();
+    } );
     </script>
-
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#modal_submit').on('show.bs.modal', function (e) {
+            var btn = $(e.relatedTarget);
+            var id = btn.data('id');
+            var nama = btn.data('nama');
+            var modal = $(this);
+            var form = modal.find('#form_submit');
+            form.attr('action', "<?=base_url('dashboard/submitproposal/') ?>" + id);
+            modal.find('.modal-title span.detail').text(`${id}-${nama}`); 
+            modal.find('.modal-action').on('click', function() { form.submit(); });
+        
+        })
+    })
+  </script>
 </body>
 </html>

@@ -33,7 +33,11 @@
         <li class="nav-item active">
           <a href="#" class="nav-link">
             <?php echo $this->session->userdata('nama') ?>
-            <span class="badge badge-primary"> ADMEN </span>
+            <?php if ($this->session->userdata('role') == '1') { ?>
+            <span class="badge badge-primary"> ADMIN </span>
+            <?php } else { ?>
+              <span class="badge badge-primary"> SUPPLIER </span>
+            <?php } ?>
           </a>
         </li>
         <li class="nav-item">

@@ -22,7 +22,7 @@
                         <span class="nav-link disabled">Barang</span>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link <?=($this->uri->segment(2) == '') ? 'active' : ''; ?>" href="<?=base_url('supplier'); ?>">Daftar Harga</a>
+                    <a class="nav-link <?=($this->uri->segment(2) == '' || $this->uri->segment(2) == 'index') ? 'active' : ''; ?>" href="<?=base_url('supplier'); ?>">Daftar Harga</a>
                     </li>
                 </ul>
 
@@ -46,18 +46,18 @@
                 
                 <!-- NOTIFICATION -->
                 <!-- NOTIFICATION::edit_barang -->
-                <?php if ($this->session->flashdata('edit_id')) { 
-                        if (!$this->session->flashdata('edit_gagal')) { 
+                <?php if ($this->session->flashdata('update_id')) { 
+                        if (!$this->session->flashdata('update_gagal')) { 
                 ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Berhasil</strong> mengedit data barang <strong>#<?=$this->session->flashdata('edit_id');?>!</strong>
+                    <strong>Berhasil</strong> update harga bahan baku <strong>#<?=$this->session->flashdata('update_id');?>!</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <?php } else { ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Gagal</strong> mengedit data barang <strong>#<?=$this->session->flashdata('edit_id');?>!</strong> Terjadi kesalahan
+                    <strong>Gagal</strong> mengedit data barang <strong>#<?=$this->session->flashdata('update_id');?>!</strong> Terjadi kesalahan
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -66,29 +66,6 @@
                         }
                     }
                 ?>
-
-                <!-- NOTIFICATION::tambah_stok_barang -->
-                <?php if ($this->session->flashdata('tambah_stok_id')) { 
-                        if ($this->session->flashdata('tambah_stok_berhasil')) { 
-                ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Berhasil</strong> menambah stok barang <strong>#<?=$this->session->flashdata('tambah_stok_id');?>!</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php } else { ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Gagal</strong> menambah barang <strong>#<?=$this->session->flashdata('tambah_stok_id');?>!</strong> Terjadi kesalahan
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php 
-                        }
-                    }
-                ?>
-
                 <!--/ NOTIFICATION -->
 
 
@@ -102,7 +79,8 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th># ID Barang</th>
-                                <th>Sisa Stock</th>
+                                <th>Nama</th>
+                                <th>Kode Barang</th>
                                 <th>Harga</th>
                                 <th>*</th>
                             </tr>
@@ -110,11 +88,12 @@
                         <tbody>
                         <?php foreach ($barangs as $barang) { ?>
                             <tr>
-                                <td><?=$barang['idbahanbaku']; ?></td>
-                                <td><?=$barang['qty']; ?></td>
+                                <td><?=$barang['idbarang']; ?></td>
+                                <td><?=$barang['nama']; ?></td>
+                                <td><?=$barang['kodebarang']; ?></td>
                                 <td><?=$barang['harga']; ?></td>
                                 <td>
-                                    <a href="#" role="button" data-toggle="modal" data-target="#modal_update_harga" data-id="<?=$barang['idbahanbaku']; ?>" data-nama="<?=$barang['idbahanbaku']; ?>">Update Harga</a>
+                                    <a href="#" role="button" data-toggle="modal" data-target="#modal_update_harga" data-id="<?=$barang['idbarang']; ?>" data-nama="<?=$barang['idbarang']; ?>">Update Harga</a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -150,20 +129,13 @@
         </div>
     </div>
 
-  <!-- Bootstrap JS -->
+    <!-- Bootstrap JS -->
 	<script type="text/javascript" src="<?=base_url()?>assets/js/popper.1.11.0.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>assets/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function() {
-        $('#modal_konfirmasi_hapus').on('show.bs.modal', function (e) {
-            var btn = $(e.relatedTarget);
-
-            var modal = $(this);
-            modal.find('.modal-title span.detail').text(`${btn.data('id')}-${btn.data('nama')}`);
-            modal.find('.modal-action').attr('href', `<?=base_url()?>admin/hapus_barang/${btn.data('id')}`);
-        });
         $('#modal_update_harga').on('show.bs.modal', function (e) {
             var btn = $(e.relatedTarget);
             var id = btn.data('id');

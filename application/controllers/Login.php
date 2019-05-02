@@ -6,28 +6,30 @@ class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('m_karyawan', '', TRUE);
-
 	}
 
 	public function index() {
-		// cek $_SESSION
-		if ($this->session->userdata('id_karyawan') && $this->session->userdata('jabatan')) {
-			redirect(strtolower(pages), 'location');
+		if ($this->session->userdata('role')=='1') {
+			redirect('dashboard', 'location');
+		} elseif ($this->session->userdata('role')=='2') {
+			redirect('supplier', 'location');
 		}
+		// cek $_SESSION
 		$this->load->view('login');
 	}
 	
 	public function login() {
 		// cek $_POST
 		if ($this->input->post()) {
-			$id = $this->input->post('id_karyawan');
+			$username = $this->input->post('username');
 			$pwd = $this->input->post('password');
 
-			$data = $this->m_karyawan->get_karyawan($id, $pwd);
+			$data = $this->m_karyawan->get_karyawan($username, $pwd);
+			$lvl = $this->m_karyawan->get_karyawan_level($data[0]['iduser']);
 			if (!$data) {
 				$this->session->set_flashdata('login-gagal', "GAGAL");
 				redirect('login/index', 'location');
-			} elseif ($data[0]['role'] == '1') {
+			} elseif ($data[0]['role'] == '1' && $lvl[0]['level'] == "2") {
 				$this->session->set_userdata('iduser', $data[0]['iduser']);
 				$this->session->set_userdata('username', $data[0]['username']);
 				$this->session->set_userdata('nama', $data[0]['nama']);

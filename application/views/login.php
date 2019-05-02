@@ -32,9 +32,9 @@
 						<?php } ?>
 						<form action="<?=base_url('login/login');?>" method="post">
 							<div class="form-group">
-							<label for="inputuname">ID Karyawan</label>
+							<label for="inputuname">Username</label>
 								<div class="form-label-group">
-									<input type="text" id="id_karyaywan" name="id_karyawan" class="form-control" placeholder="ID" required="required" autofocus="autofocus">
+									<input type="text" id="username" name="username" class="form-control" placeholder="Username" required="required" autofocus="autofocus">
 								</div>
 							</div>
 							<div class="form-group">
@@ -45,9 +45,6 @@
 							</div>
 							<input class="btn btn-primary btn-block" type="submit" name="login" value="Login">
 						</form>
-							<div class="text-center">
-								<a class="d-block small mt-3" href="<?=base_url()?>supplier">Supplier</a>
-							</div>
 					</div>
 				</div>
 			</div>
