@@ -39,4 +39,9 @@ class Dashboard extends CI_Controller {
 		}
 		redirect('dashboard/pemesanan', 'location');
 	}
+
+	public function daftar_pesanan() {
+		$data['proposal'] = $this->m_karyawan->get_proposal();
+        $this->load->view('daftar_pesanan', $data);
+    }
 }

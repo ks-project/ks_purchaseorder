@@ -12,6 +12,9 @@
 		<li class="nav-item">
 			<a class="nav-link <?=($this->uri->segment(2) == 'pemesanan') ? 'active' : ''; ?>" href="<?=base_url('dashboard/pemesanan'); ?>">Pemesanan</a>
 		</li>
+		<li class="nav-item">
+			<a class="nav-link <?=($this->uri->segment(2) == 'daftar_pesanan') ? 'active' : ''; ?>" href="<?=base_url('dashboard/daftar_pesanan'); ?>">Daftar Pesanan</a>
+		</li>
 	</ul>
 
 </nav>

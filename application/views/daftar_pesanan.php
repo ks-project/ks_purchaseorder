@@ -72,12 +72,11 @@
                                 <th>Deadline</th>
                                 <th>Created</th>
                                 <th>ID Supplier</th>
-                                <th>*</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($proposal as $prop) { ?>
-                        <?php if ($prop['status'] == '1'){ ?>
+                        <?php if ($prop['status'] == '2'){ ?>
                             <tr>
                                 <td><?=$prop['idproposal']; ?></td>
                                 <td><?=$prop['judul']; ?></td>
@@ -86,9 +85,6 @@
                                 <td><?=$prop['deadline']; ?></td>
                                 <td><?=$prop['created']; ?></td>
                                 <td><?=$prop['idsupplier']; ?></td>
-                                <td class="text-center">
-                                <a href="#" role="button" data-toggle="modal" data-target="#modal_submit" data-id="<?=$prop['idproposal']; ?>" data-nama="<?=$prop['judul']; ?>">Submit</a>
-                                </td>
                             </tr>
                         <?php } ?>
                         <?php } ?>
