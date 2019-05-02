@@ -27,14 +27,19 @@
                         <li class="breadcrumb-item active" aria-curent="page">Dashboard</li>
                     </ol>
                 </nav>
-                <div class="d-flex align-items-baseline">
+                <div class="text-center">
+                    <img src="<?=base_url()?>assets/background.png" style="width : 40%;" class="text-center">
+                    <br>
+                    <br>
+                    <br>
                     <h1>Selamat Datang!</h1>
-                </div>
-                <div>
-                    <h2> di Kartika Sari - Purchase Order</h2>
-                </div>
 
-                <p>Kue-kue Kartika Sari® yang menjadi oleh-oleh favorit Anda adalah resep turun-menurun keluarga Ibu Ratnawati yang didapatkan sejak jaman kolonial Belanda.</p>
+                    <div>
+                        <h2> di Kartika Sari - Purchase Order</h2>
+                    </div>
+
+                    <p>Kue-kue Kartika Sari® yang menjadi oleh-oleh favorit Anda adalah resep turun-menurun keluarga Ibu Ratnawati yang didapatkan sejak jaman kolonial Belanda.</p>
+                </div>
                 <!-- NOTIFICATION -->
                 <!-- NOTIFICATION::hapus_barang -->
                 <?php if ($this->session->flashdata('hapus_id')) { 
