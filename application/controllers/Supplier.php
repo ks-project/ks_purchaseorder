@@ -16,7 +16,7 @@ class Supplier extends CI_Controller {
 
 	public function index() {
 		$data['barangs'] = $this->m_harga->get_barangs();
-		$this->load->view('daftar_harga_supplier', $data);
+		$this->load->view('supplier/daftar_harga_supplier', $data);
 	}
 
 	public function update_harga($id = NULL) {

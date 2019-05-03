@@ -16,17 +16,17 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->view('dashboard');
+		$this->load->view('admin/dashboard');
 	}
 
 	public function daftar_harga() {
 		$data['barangs'] = $this->m_harga->get_barangs();
-        $this->load->view('daftar_harga', $data);
+        $this->load->view('admin/daftar_harga', $data);
     }
 
     public function pemesanan() {
 		$data['proposal'] = $this->m_karyawan->get_proposal();
-        $this->load->view('pemesanan', $data);
+        $this->load->view('admin/pemesanan', $data);
     }
 	
 	public function submitproposal($id = NULL) {
@@ -42,6 +42,6 @@ class Dashboard extends CI_Controller {
 
 	public function daftar_pesanan() {
 		$data['proposal'] = $this->m_karyawan->get_proposal();
-        $this->load->view('daftar_pesanan', $data);
+        $this->load->view('admin/daftar_pesanan', $data);
     }
 }

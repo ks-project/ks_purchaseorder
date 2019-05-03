@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?=base_url()?>assets/css/main.css">
+    <!-- Data Tables -->
+    <link href="<?=base_url()?>assets/css/datatables.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -75,7 +77,7 @@
                 </div>
             <?php } else { ?>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered" id="table">
                         <thead class="thead-dark">
                             <tr>
                                 <th># ID Barang</th>
@@ -133,6 +135,8 @@
 	<script type="text/javascript" src="<?=base_url()?>assets/js/popper.1.11.0.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>assets/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
+    <!-- Data Table -->
+    <script src="<?=base_url()?>assets/js/datatables.min.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -149,5 +153,10 @@
         })
     })
   </script>
+  <script type="text/javascript">
+    $(document).ready( function () {
+        $('#table').DataTable();
+    } );
+    </script>
 </body>
 </html>
